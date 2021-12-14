@@ -32,13 +32,12 @@ class App extends React.Component {
                 id: snapshot.id,
                 ...snapshot.data()
               }
-            },
-            () => {
-              console.log(this.state);
-              // ! must do this as a second function because we need to AWAIT it's propagation
             }
+            // ,() => {
+            //   console.log(this.state);
+            // ! must do this console.log as a second function because we need to AWAIT snapshot's propagation
+            // }
           );
-          console.log(this.state);
         });
       } else {
         this.setState({ currentUser: userAuth });
@@ -55,7 +54,9 @@ class App extends React.Component {
       <div>
         <Header currentUser={this.state.currentUser} />{' '}
         <Switch>
-          <Route exact path='/' component={HomePage} /> <Route path='/shop' component={ShopPage} /> <Route path='/signin' component={SignInAndSignUpPage} />{' '}
+          <Route exact path='/' component={HomePage} />{' '}
+          <Route path='/shop' component={ShopPage} />{' '}
+          <Route path='/signin' component={SignInAndSignUpPage} />{' '}
         </Switch>{' '}
       </div>
     );
